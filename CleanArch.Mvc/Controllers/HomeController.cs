@@ -20,6 +20,7 @@ namespace CleanArch.Mvc.Controllers
 
         public IActionResult Index()
         {
+            //im gonna test this
             return View();
         }
 
