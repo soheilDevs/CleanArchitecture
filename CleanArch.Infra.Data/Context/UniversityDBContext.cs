@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CleanArch.Domains;
+using CleanArch.Domains.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArch.Infra.Data.Context

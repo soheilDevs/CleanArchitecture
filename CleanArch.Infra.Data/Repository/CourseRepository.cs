@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CleanArch.Domains;
 using CleanArch.Domains.Interfaces;
+using CleanArch.Domains.Models;
 using CleanArch.Infra.Data.Context;
 
 namespace CleanArch.Infra.Data.Repository
