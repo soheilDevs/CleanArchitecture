@@ -13,7 +13,8 @@ namespace CleanArch.Infra.Data.Repository
         {
             _ctx = ctx;
         }
-        public IEnumerable<Course> GeCourses()
+
+        public IEnumerable<Course> GetCourses()
         {
             return _ctx.Courses;
         }
