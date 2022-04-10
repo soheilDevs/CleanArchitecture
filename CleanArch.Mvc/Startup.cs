@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CleanArch.Infra.Data.Context;
 
 namespace CleanArch.Mvc
 {
@@ -35,6 +36,10 @@ namespace CleanArch.Mvc
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.AddDbContext<UniversityDBContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("UniversityDBConnection"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
