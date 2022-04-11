@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArch.Infra.Data.Context
 {
-    public class UniversityDBContext : DbContext
+    public class UniversityDbContext : DbContext
     {
-        public UniversityDBContext(DbContextOptions<UniversityDBContext> options):base(options)
+        public UniversityDbContext(DbContextOptions<UniversityDbContext> options):base(options)
         {
 
         }
