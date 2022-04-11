@@ -3,6 +3,7 @@ using CleanArch.Application.Interfaces;
 using CleanArch.Application.ViewModels;
 using CleanArch.Domains;
 using CleanArch.Domains.Interfaces;
+using CleanArch.Domains.Models;
 
 namespace CleanArch.Application.Services
 {
@@ -22,6 +23,12 @@ namespace CleanArch.Application.Services
             {
                 Courses = _courseRepository.GetCourses()
             };
+        }
+
+        public Course GetCourseById(int courseId)
+        {
+            Course course = _courseRepository.GetCourseById(courseId);
+            return course;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CleanArch.Domains;
 using CleanArch.Domains.Interfaces;
 using CleanArch.Domains.Models;
@@ -18,6 +19,11 @@ namespace CleanArch.Infra.Data.Repository
         public IEnumerable<Course> GetCourses()
         {
             return _ctx.Courses;
+        }
+
+        public Course GetCourseById(int courseId)
+        {
+            return _ctx.Courses.Find(courseId);
         }
     }
 }

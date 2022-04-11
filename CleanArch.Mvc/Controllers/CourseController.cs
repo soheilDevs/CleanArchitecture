@@ -21,5 +21,16 @@ namespace CleanArch.Mvc.Controllers
             var model = _courseService.GetCourses();
             return View(model);
         }
+
+        public IActionResult ShowCourse(int id)
+        {
+            var course = _courseService.GetCourseById(id);
+            if (course==null)
+            {
+                return NotFound();      
+            }
+
+            return View(course);
+        }
     }
 }
