@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CleanArch.Infra.Data.Context;
 using CleanArch.Infra.IoC;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace CleanArch.Mvc
 {
@@ -29,13 +30,25 @@ namespace CleanArch.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("UniversityIdentityDBConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("UniversityIdentityDBConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.LoginPath = "/Login";
+                options.LogoutPath = "/LogOut";
+                options.ExpireTimeSpan=TimeSpan.FromMinutes(43200);
+            });
             services.AddControllersWithViews();
             services.AddDbContext<UniversityDbContext>(options =>
             {
@@ -71,7 +84,7 @@ namespace CleanArch.Mvc
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                //endpoints.MapRazorPages();
             });
         }
 

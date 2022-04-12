@@ -1,4 +1,5 @@
 ﻿using CleanArch.Application.Interfaces;
+using CleanArch.Application.Security;
 using CleanArch.Application.ViewModels;
 using CleanArch.Domains.Interfaces;
 using CleanArch.Domains.Models;
@@ -7,7 +8,7 @@ namespace CleanArch.Application.Services
 {
     public class UserService: IUserService
     {
-        private IUserRepository _repository;
+        private readonly IUserRepository _repository;
 
         public UserService(IUserRepository repository)
         {
@@ -39,6 +40,11 @@ namespace CleanArch.Application.Services
             _repository.AddUser(users);
             _repository.Save();
             return users.UserId;
+        }
+
+        public bool IsUserExist(string email, string password)
+        {
+            return _repository.IsUserExist(email.Trim().ToLower(), PasswordHelper.EncodePasswordMd5(password));
         }
     }
 }
